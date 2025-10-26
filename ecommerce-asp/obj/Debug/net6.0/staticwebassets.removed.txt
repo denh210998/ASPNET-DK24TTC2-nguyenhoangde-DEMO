@@ -1,0 +1,4 @@
+D:\denh\ecommerce-asp\ecommerce-asp\wwwroot\images\airpod\3.jpg
+D:\denh\ecommerce-asp\ecommerce-asp\wwwroot\images\airpod\4.jpg
+D:\denh\ecommerce-asp\ecommerce-asp\wwwroot\images\iphone\1.jpg
+D:\denh\ecommerce-asp\ecommerce-asp\wwwroot\images\iphone\2.jpg
