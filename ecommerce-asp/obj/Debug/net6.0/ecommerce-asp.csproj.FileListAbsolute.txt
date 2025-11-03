@@ -73,3 +73,5 @@ D:\denh\ecommerce-asp\ecommerce-asp\bin\Debug\net6.0\runtimes\browser\lib\net6.0
 D:\denh\ecommerce-asp\ecommerce-asp\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerce-asp.csproj.AssemblyReference.cache
 D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerc.53658EA0.Up2Date
+D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerce-asp.sourcelink.json
+D:\denh\ecommerce-asp\ecommerce-asp\bin\Debug\net6.0\Newtonsoft.Json.dll
