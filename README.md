@@ -30,11 +30,10 @@ Ngoài ra, hệ thống còn hỗ trợ người quản trị trong việc quả
 
 ## Chức năng chính
 ### 1. Dành cho khách hàng:
-- Xem danh sách sản phẩm Apple theo danh mục (iPhone, MacBook, iPad, Watch, AirPods,…)
-- Tìm kiếm sản phẩm theo tên hoặc loại.
+- Xem danh sách sản phẩm Apple theo danh mục (iPhone, MacBook, Watch, AirPods,…)
 - Xem chi tiết sản phẩm.
 - Thêm sản phẩm vào giỏ hàng.
-- Đặt hàng và thanh toán.
+- Đặt hàng .
 - Đăng ký / đăng nhập tài khoản.
 - Xem lịch sử đơn hàng.
 
@@ -43,8 +42,8 @@ Ngoài ra, hệ thống còn hỗ trợ người quản trị trong việc quả
 - Quản lý danh mục sản phẩm.
 - Quản lý sản phẩm (thêm, sửa, xóa).
 - Quản lý người dùng.
-- Quản lý đơn hàng.
-- Thống kê doanh thu.
+
+
 
 
 ## Cấu trúc thư mục dự án (dự kiến)
