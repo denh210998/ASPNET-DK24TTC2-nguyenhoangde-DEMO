@@ -17,7 +17,8 @@ namespace ecommerce_asp.Controllers
         {
             CategoryModel category = _dataContext.Categories.Where(c => c.Slug == Slug).FirstOrDefault();
 
-            if (category == null) return RedirectToAction("Index");
+            if (category == null) 
+                return RedirectToAction("Index","Home");
 
             var productsByCategory = _dataContext.Products.Where(p => p.CategoryId == category.Id);
 

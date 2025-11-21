@@ -1,76 +1,129 @@
 ﻿@using ecommerce_asp.Models.ViewModels
 @model CartItemViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-cart
-@{
-}
-<section id="cart_items">
-	<div class="container">
-		<div class="breadcrumbs">
-			<ol class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Shopping Cart</li>
-			</ol>
-		</div>
-		<div class="table-responsive cart_info">
-			<table class="table table-condensed">
-				<thead>
-					<tr class="cart_menu">
-						<td class="image">Item</td>
-						<td class="description"></td>
-						<td class="price">Price</td>
-						<td class="quantity">Quantity</td>
-						<td class="total">Total</td>
-						<td></td>
-					</tr>
-				</thead>
-				<tbody>
-					@if (Model.CartItems.Count > 0){
-						@foreach (var item in Model.CartItems)
-						{
-							<tr>
-								<td class="cart_product">
-									<a href=""><img src="~images/@item.Image" alt=""></a>
-								</td>
-								<td class="cart_description">
-									<h4><a href="">@item.ProductName</a></h4>
-									<p>Web ID: 1089772</p>
-								</td>
-								<td class="cart_price">
-									<p>@item.Price</p>
-								</td>
-								<td class="cart_quantity">
-										<a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ProductId"> + </a>
-										<input class="cart_quantity_input" type="text" name="quantity" value="@item.Quanlity" autocomplete="off" size="2">
-										<a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ProductId"> - </a>
-										<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId"> Remove </a>
-								</td>
-								<td class="cart_total">
-									<p class="cart_total_price">@Model.CartItems.Where(x => x.ProductId == item.ProductId).Sum(x => x.Quanlity*x.Price).ToString()</p>
-								</td>
-								<td class="cart_delete">
-									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-								</td>
-							</tr>
-						}
-						<tr>
-							<td colspan="6">Grand total:<p class="cart_total_price"></p> @Model.GrandTotal.ToString()</td>
-						</tr>
-					}
-					else
-					{
-						<tr>
-							<td colspan="5"><h4>Your cart is Empty</h4></td>
-						</tr>
 
-					}
+<section id="cart_items" class="py-4">
+    <div class="container">
 
+        <div class="mb-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-light px-3 py-2 rounded">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Shopping Cart</li>
+                </ol>
+            </nav>
+        </div>
 
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+            </div>
 
-				</tbody>
-			</table>
-		</div>
-	</div>
-</section> <!--/#cart_items-->
+            <div class="card-body p-0">
+
+                @if (Model.CartItems.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th style="width:200px;">Quantity</th>
+                                    <th>Total</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/images/@item.Image" class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                                        </td>
+
+                                        <td>
+                                            <h5 class="mb-1">@item.ProductName</h5>
+                                        </td>
+
+                                        <td>
+                                            <span class="fw-bold text-primary">$@item.Price</span>
+                                        </td>
+
+                                        <td>
+                                            <div style="display: inline-flex; align-items: center;">
+
+                                                <a asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ProductId"
+                                                   class="btn btn-default btn-sm"
+                                                   style="width:32px; height:32px; padding:0; text-align:center; line-height:32px;">
+                                                    <i class="fa fa-minus"></i>
+                                                </a>
+
+                                                <input type="text"
+                                                       value="@item.Quanlity"
+                                                       readonly
+                                                       class="form-control"
+                                                       style="width:50px; height:32px; text-align:center; margin:0 6px; padding:0;">
+
+                                                <a asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ProductId"
+                                                   class="btn btn-default btn-sm"
+                                                   style="width:32px; height:32px; padding:0; text-align:center; line-height:32px;">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <strong class="text-success">
+                                                $@(item.Price* item.Quanlity)
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId"
+                                               class="btn btn-outline-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="p-4 d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">
+                            Grand Total:
+                            <span class="text-primary fw-bold">$@Model.GrandTotal</span>
+                        </h4>
+
+                        <div class="d-flex gap-2">
+                            <a asp-controller="Cart" asp-action="Clear"
+                               class="btn btn-danger">
+                                <i class="fa fa-trash"></i> Clear Cart
+                            </a>
+
+                            <a asp-controller="Cart" asp-action="Checkout"
+                               class="btn btn-success">
+                                <i class="fa fa-credit-card"></i> Checkout
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="p-5 text-center">
+                        <h3 class="text-muted">Your cart is empty</h3>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary mt-3">
+                            Continue Shopping
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>

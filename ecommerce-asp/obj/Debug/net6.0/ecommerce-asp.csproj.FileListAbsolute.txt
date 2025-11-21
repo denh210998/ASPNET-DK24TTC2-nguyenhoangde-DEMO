@@ -75,3 +75,4 @@ D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerce-asp.csproj.Assemb
 D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerc.53658EA0.Up2Date
 D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\ecommerce-asp.sourcelink.json
 D:\denh\ecommerce-asp\ecommerce-asp\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\denh\ecommerce-asp\ecommerce-asp\obj\Debug\net6.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
