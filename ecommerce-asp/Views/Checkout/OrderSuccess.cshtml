@@ -1,0 +1,49 @@
+﻿@model ecommerce_asp.Models.OrderModel
+
+<section class="py-4">
+    <div class="container">
+        <h2>Thank you for your order!</h2>
+
+        <p>Order ID: <strong>@Model.Id</strong></p>
+        <p><strong>Name:</strong> @Model.FullName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Address:</strong> @Model.Address</p>
+        @if (!string.IsNullOrEmpty(Model.Note))
+        {
+            <p><strong>Note:</strong> @Model.Note</p>
+        }
+        <p><strong>Total:</strong> $@Model.TotalAmount</p>
+
+        <hr />
+
+        <h4>Order Items</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Image</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>
+                            <img src="~/images/@item.Image" style="width:80px" />
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>$@item.Price</td>
+                        <td>$@(item.Quantity* item.Price)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to Home</a>
+    </div>
+</section>

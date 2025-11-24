@@ -18,7 +18,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Admin/Account/Login";
+    options.LoginPath = "/Account/Login";
 });
 
 
@@ -38,7 +38,6 @@ var app = builder.Build();
 
 app.UseSession();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

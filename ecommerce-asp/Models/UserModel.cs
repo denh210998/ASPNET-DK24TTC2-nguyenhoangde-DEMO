@@ -13,7 +13,6 @@ namespace ecommerce_asp.Models
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        // Lưu mật khẩu đã hash, không lưu plain text
         [Required]
         public string PasswordHash { get; set; }
     }

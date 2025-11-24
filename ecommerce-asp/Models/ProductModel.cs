@@ -35,10 +35,9 @@ namespace ecommerce_asp.Models
         [ValidateNever]
         public CategoryModel? Category { get; set; }
 
-        // Tên file lưu trong DB
+
         public string? Image { get; set; }
 
-        // File upload (không map DB)
         [NotMapped]
         [Required(ErrorMessage = "Yêu cầu chọn hình ảnh")]
         public IFormFile ImageUpload { get; set; }

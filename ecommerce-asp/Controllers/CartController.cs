@@ -19,9 +19,6 @@ namespace ecommerce_asp.Controllers
             _cartService = cartService;
         }
 
-        // ---------------------------
-        // SHOW CART
-        // ---------------------------
         public async Task<IActionResult> Index()
         {
             var cart = await _cartService.GetOrCreateCart();
@@ -44,9 +41,6 @@ namespace ecommerce_asp.Controllers
             return View(vm);
         }
 
-        // ---------------------------
-        // ADD PRODUCT
-        // ---------------------------
         public async Task<IActionResult> Add(int id)
         {
             var cart = await _cartService.GetOrCreateCart();
@@ -84,14 +78,14 @@ namespace ecommerce_asp.Controllers
 
         public async Task<IActionResult> Increase(int id)
         {
-            // id = ProductId
+ 
             var cart = await _cartService.GetOrCreateCart();
 
             var item = await _context.CartItems
                 .FirstOrDefaultAsync(c => c.CartModelId == cart.Id && c.ProductId == id);
 
             if (item == null)
-                return RedirectToAction("Index"); // hoặc báo lỗi nhẹ
+                return RedirectToAction("Index"); 
 
             item.Quanlity++;
             await _context.SaveChangesAsync();

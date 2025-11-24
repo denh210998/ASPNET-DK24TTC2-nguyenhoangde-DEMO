@@ -9,7 +9,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
-            // sau này bạn có thể truyền thống kê đơn hàng, doanh thu ở đây
             return View();
         }
     }

@@ -17,7 +17,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             _env = env;
         }
 
-        // ===================== INDEX =====================
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products
@@ -28,7 +27,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return View(products);
         }
 
-        // ===================== CREATE (GET) =====================
         [HttpGet]
         public IActionResult Create()
         {
@@ -36,18 +34,15 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return View();
         }
 
-        // ===================== CREATE (POST) =====================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductModel model)
         {
-            // validate ảnh cho Create (bắt buộc)
             if (model.ImageUpload == null || model.ImageUpload.Length == 0)
             {
                 ModelState.AddModelError("ImageUpload", "Yêu cầu chọn hình ảnh");
             }
 
-            // Slug tự sinh từ Name
             if (!string.IsNullOrWhiteSpace(model.Name))
             {
                 model.Slug = model.Name.Trim().ToLower().Replace(" ", "-");
@@ -59,7 +54,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
                 return View(model);
             }
 
-            // ===== Lưu file ảnh =====
             if (model.ImageUpload != null && model.ImageUpload.Length > 0)
             {
                 var uploadDir = Path.Combine(_env.WebRootPath, "images");
@@ -85,7 +79,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ===================== EDIT (GET) =====================
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -96,12 +89,10 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return View(product);
         }
 
-        // ===================== EDIT (POST) =====================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductModel model)
         {
-            // Cho phép không đổi ảnh -> bỏ validate cho ImageUpload
             ModelState.Remove("ImageUpload");
 
             if (!ModelState.IsValid)
@@ -118,7 +109,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
 
             var uploadDir = Path.Combine(_env.WebRootPath, "images");
 
-            // Nếu user chọn ảnh mới
             if (model.ImageUpload != null && model.ImageUpload.Length > 0)
             {
                 if (!Directory.Exists(uploadDir))
@@ -133,7 +123,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
                     await model.ImageUpload.CopyToAsync(fs);
                 }
 
-                // Xóa ảnh cũ nếu có
                 if (!string.IsNullOrEmpty(oldProduct.Image))
                 {
                     var oldPath = Path.Combine(uploadDir, oldProduct.Image);
@@ -145,11 +134,9 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             }
             else
             {
-                // Không chọn ảnh mới -> giữ ảnh cũ
                 model.Image = oldProduct.Image;
             }
 
-            // Tạo lại slug từ Name
             if (!string.IsNullOrWhiteSpace(model.Name))
             {
                 model.Slug = model.Name.Trim().ToLower().Replace(" ", "-");
@@ -162,14 +149,14 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ===================== DELETE =====================
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null) return NotFound();
 
-            // Xoá ảnh
+
             if (!string.IsNullOrEmpty(product.Image))
             {
                 var uploadDir = Path.Combine(_env.WebRootPath, "images");

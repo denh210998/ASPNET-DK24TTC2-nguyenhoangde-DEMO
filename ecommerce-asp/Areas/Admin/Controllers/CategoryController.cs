@@ -15,7 +15,7 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             _context = context;
         }
 
-        // ========== INDEX ==========
+
         public async Task<IActionResult> Index()
         {
             var categories = await _context.Categories
@@ -25,22 +25,21 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return View(categories);
         }
 
-        // ========== CREATE GET ==========
+    
         [HttpGet]
         public IActionResult Create() => View();
 
-        // ========== CREATE POST ==========
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryModel model)
         {
-            // Tạo slug từ Name
+
             if (!string.IsNullOrWhiteSpace(model.Name))
             {
                 model.Slug = model.Name.Trim().ToLower().Replace(" ", "-");
             }
 
-            // Check slug trùng
+   
             bool slugExists = await _context.Categories
                 .AnyAsync(c => c.Slug == model.Slug);
             if (slugExists)
@@ -53,7 +52,7 @@ namespace ecommerce_asp.Areas.Admin.Controllers
                 return View(model);
             }
 
-            // Status default
+    
             model.Status = 1;
 
             _context.Categories.Add(model);
@@ -63,7 +62,7 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ========== EDIT GET ==========
+ 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -73,20 +72,19 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             return View(category);
         }
 
-        // ========== EDIT POST ==========
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CategoryModel model)
         {
             if (id != model.Id) return NotFound();
 
-            // Tạo lại slug từ Name
+
             if (!string.IsNullOrWhiteSpace(model.Name))
             {
                 model.Slug = model.Name.Trim().ToLower().Replace(" ", "-");
             }
 
-            // Check slug trùng, loại trừ chính nó
+
             bool slugExists = await _context.Categories
                 .AnyAsync(c => c.Id != model.Id && c.Slug == model.Slug);
             if (slugExists)
@@ -116,7 +114,6 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             }
         }
 
-        // ========== DELETE ==========
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {

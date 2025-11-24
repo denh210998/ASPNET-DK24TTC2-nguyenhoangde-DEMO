@@ -4,10 +4,12 @@ namespace ecommerce_asp.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Required, EmailAddress(ErrorMessage = "Invalid email")]
+        [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required, DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

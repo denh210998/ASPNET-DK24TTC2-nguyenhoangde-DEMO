@@ -1,0 +1,86 @@
+﻿@model OrderModel
+
+@{
+    ViewData["title"] = "Order Detail";
+}
+
+<h3 class="mb-3">
+    Order Detail - #@Model.Id
+</h3>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h4>Customer</h4>
+        <p><strong>Name:</strong> @Model.FullName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Address:</strong> @Model.Address</p>
+        @if (!string.IsNullOrEmpty(Model.Note))
+        {
+            <p><strong>Note:</strong> @Model.Note</p>
+        }
+    </div>
+    <div class="col-md-6">
+        <h4>Order Info</h4>
+        <p><strong>Date:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+        <p>
+            <strong>Total:</strong>
+            <span class="text-success">
+                $@Model.TotalAmount.ToString("N2")
+            </span>
+        </p>
+    </div>
+</div>
+
+<h4>Order Items</h4>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Product</th>
+            <th style="width:110px;">Image</th>
+            <th style="width:80px;" class="text-center">Qty</th>
+            <th style="width:120px;">Price</th>
+            <th style="width:120px;">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>
+                    <img src="~/images/@item.Image"
+                         class="img-thumbnail"
+                         style="max-width:80px;" />
+                </td>
+                <td class="text-center">@item.Quantity</td>
+                <td>$@item.Price.ToString("N2")</td>
+                <td>
+                    $@((item.Quantity * item.Price).ToString("N2"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-end"><strong>Grand Total:</strong></td>
+            <td>
+                <strong class="text-success">
+                    $@Model.TotalAmount.ToString("N2")
+                </strong>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">
+    <i class="fa fa-arrow-left"></i> Back to list
+</a>
+
+<a asp-action="Delete"
+   asp-route-id="@Model.Id"
+   class="btn btn-danger"
+   onclick="return confirm('Are you sure you want to delete this order?');">
+    <i class="fa fa-trash"></i> Delete
+</a>

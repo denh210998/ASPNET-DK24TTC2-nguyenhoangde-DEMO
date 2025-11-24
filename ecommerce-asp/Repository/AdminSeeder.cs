@@ -9,13 +9,11 @@ namespace ecommerce_asp.Repository
             var userManager = service.GetRequiredService<UserManager<IdentityUser>>();
             var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
 
-            // Tạo role Admin nếu chưa có
             if (!await roleManager.RoleExistsAsync("Admin"))
             {
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            // Tạo tài khoản admin mặc định
             var adminEmail = "admin@shop.com";
             var adminPass = "Admin@123";
 

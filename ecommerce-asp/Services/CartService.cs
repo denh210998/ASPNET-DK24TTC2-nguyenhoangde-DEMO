@@ -43,7 +43,6 @@ namespace ecommerce_asp.Services
 
             if (userId != null)
             {
-                // ƯU TIÊN: giỏ hàng theo UserId
                 cart = await _context.Carts
                     .Include(c => c.CartItems)
                     .FirstOrDefaultAsync(c => c.UserId == userId.ToString());
@@ -52,7 +51,6 @@ namespace ecommerce_asp.Services
                     return cart;
             }
 
-            // Nếu chưa login → lấy giỏ theo cookie CartId
             string cookieId = GetOrCreateCookieCartId();
 
             cart = await _context.Carts

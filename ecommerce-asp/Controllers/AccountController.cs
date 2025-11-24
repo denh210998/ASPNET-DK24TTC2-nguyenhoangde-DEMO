@@ -16,14 +16,12 @@ namespace ecommerce_asp.Controllers
             _context = context;
         }
 
-        // GET: /Account/Register
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        // POST: /Account/Register
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -32,7 +30,6 @@ namespace ecommerce_asp.Controllers
                 return View(model);
             }
 
-            // Check email tồn tại
             bool emailExists = await _context.Users.AnyAsync(u => u.Email == model.Email);
             if (emailExists)
             {
@@ -148,6 +145,50 @@ namespace ecommerce_asp.Controllers
 
             TempData["success"] = "Logged out!";
             return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> MyOrders()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
+
+            string userIdStr = userId.Value.ToString();
+
+            var orders = await _context.Orders
+                .Where(o => o.UserId == userIdStr)
+                .OrderByDescending(o => o.CreatedAt)
+                .ToListAsync();
+
+            return View(orders);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OrderDetail(int id)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            string userIdStr = userId.Value.ToString();
+
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userIdStr);
+
+            if (order == null)
+            {
+                return NotFound(); 
+            }
+
+            return View(order);  
         }
     }
 }

@@ -46,5 +46,7 @@ namespace ecommerce_asp.Areas.Admin.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+
+
     }
 }

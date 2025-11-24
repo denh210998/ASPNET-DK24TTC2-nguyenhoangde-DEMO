@@ -15,5 +15,7 @@ namespace ecommerce_asp.Repository
         public DbSet<CartModel> Carts { get; set; }
         public DbSet<CartItemDBModel> CartItems { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderItemModel> OrderItems { get; set; }
     }
 }
