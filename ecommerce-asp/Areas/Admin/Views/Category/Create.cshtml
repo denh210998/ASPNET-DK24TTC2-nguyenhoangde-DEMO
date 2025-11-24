@@ -1,0 +1,45 @@
+﻿@model ecommerce_asp.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<h3>Create New Category</h3>
+<hr />
+
+<form asp-area="Admin"
+      asp-controller="Category"
+      asp-action="Create"
+      method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    @* Không cần nhập Slug, controller tự tạo *@
+
+    <button class="btn btn-success">
+        <i class="fa fa-check"></i> Create
+    </button>
+
+    <a asp-area="Admin"
+       asp-controller="Category"
+       asp-action="Index"
+       class="btn btn-secondary">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

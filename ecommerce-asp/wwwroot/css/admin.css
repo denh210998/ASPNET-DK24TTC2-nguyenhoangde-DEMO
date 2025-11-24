@@ -1,0 +1,14 @@
+﻿/* Reset ảnh hưởng của theme frontend */
+.admin-nav .nav-link {
+    padding: 8px 15px !important;
+    display: inline-block !important;
+}
+
+.admin-nav .navbar-nav {
+    flex-direction: row !important;
+    gap: 20px !important;
+}
+
+.admin-nav .navbar-brand {
+    margin-right: 30px !important;
+}

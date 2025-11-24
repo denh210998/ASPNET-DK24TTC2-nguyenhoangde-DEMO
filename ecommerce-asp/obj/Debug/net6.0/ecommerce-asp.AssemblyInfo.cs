@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ecommerce-asp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7a02fe6357100ef56652c2c7ba5b3e9449d48ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+177e9151a1a1196275e21ae7367d72248b32a61f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ecommerce-asp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ecommerce-asp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
