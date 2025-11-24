@@ -1,6 +1,6 @@
 # ASPNET-DK24TTC2-nguyenhoangde-DEMO
 Đề tài: Xây dựng website bán sản phẩm công nghệ của Apple.
-# ĐỒ ÁN ASP.NET - WEBSITE BÁN SẢN PHẨM CÔNG NGHỆ APPLE
+# ĐỒ ÁN ASP.NET - XÂY DỰNG WEBSITE BÁN SẢN PHẨM CÔNG NGHỆ CỦA APPLE
 
 ## Thông tin sinh viên
 - **Họ và tên:** Nguyễn Hoàng Đệ
